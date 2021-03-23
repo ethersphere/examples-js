@@ -1,0 +1,96 @@
+.App {
+  padding: 10px
+}
+
+div.send {
+  width: 100%;
+  border: 1px solid rgba(1,1,1,0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+div.send > div {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+div.addressbar {
+  display: flex;
+  flex-direction: row;
+}
+div.addressbar input {
+  margin: 0px 20px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgba(1,1,1,0.1);
+  width: 320px;
+  max-width: 100%;
+}
+div.addressbar input:focus {
+  border-bottom: 1px solid rgb(221, 114, 0);
+}
+
+textarea {
+  margin-top: 10px;
+  border: none;
+  outline: none;
+  resize: none;
+  height: 100px;
+}
+
+button {
+  outline: none;
+  font-family: ibm-plex-mono;
+  cursor: pointer;
+  padding: 5px 20px;
+  color: rgb(221, 114, 0);
+  border: 1px solid rgb(221, 114, 0);
+  background-color: white;
+  border-radius: 10px;
+  align-self: baseline;
+  cursor: pointer;
+}
+
+button:hover {
+  color: white;
+  background-color: rgb(221, 114, 0);
+}
+
+button:disabled {
+  color: white;
+  background-color: lightgrey;
+  border: 1px solid lightgrey;
+}
+
+small {
+  margin-top: 5px;
+  text-align: left;
+}
+
+.progress-line, .progress-line:before {
+  height: 3px;
+  width: 100%;
+  margin: 0;
+  margin-top: 5px;
+}
+.progress-line {
+  display: -webkit-flex;
+  display: flex;
+}
+.progress-line:before {
+  background-color: rgb(221, 114, 0);
+  content: '';
+  -webkit-animation: running-progress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: running-progress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@-webkit-keyframes running-progress {
+  0% { margin-left: 0px; margin-right: 100%; }
+  50% { margin-left: 25%; margin-right: 0%; }
+  100% { margin-left: 100%; margin-right: 0; }
+}
+@keyframes running-progress {
+  0% { margin-left: 0px; margin-right: 100%; }
+  50% { margin-left: 25%; margin-right: 0%; }
+  100% { margin-left: 100%; margin-right: 0; }
+}
