@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Simple file upload and download with `bee-js` and React
+
+All the relevant code is in [`./src/App.tsx`](./src/App.tsx)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
