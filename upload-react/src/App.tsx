@@ -16,11 +16,11 @@ function App() {
 
     if (file) {
       try {
-      setUploading(true)
-      setLink(null)
+        setUploading(true)
+        setLink(null)
 
-      const hash = await bee.uploadFile(file)
-      setLink(`${beeUrl}/files/${hash}`)
+        const hash = await bee.uploadFile(file)
+        setLink(`${beeUrl}/files/${hash}`)
       } catch (e) {
         setError(e)
       }
