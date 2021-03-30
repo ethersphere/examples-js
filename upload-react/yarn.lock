@@ -1149,9 +1149,10 @@
     "minimatch" "^3.0.4"
     "strip-json-comments" "^3.1.1"
 
-"@ethersphere/bee-js@github:ethersphere/bee-js":
-  "resolved" "git+ssh://git@github.com/ethersphere/bee-js.git#4ae92fe174adf32ed152e160b6861fe96e330533"
-  "version" "0.6.0"
+"@ethersphere/bee-js@^0.7.0":
+  "integrity" "sha512-woRHqmiH6wJWiuUakyj7QdNGDrH4sWeUUl9/5qX9AEvPUkVnnKLGsqiLKAX/Gq+iG5NfJT616XWTYX/R2X4QwA=="
+  "resolved" "https://registry.npmjs.org/@ethersphere/bee-js/-/bee-js-0.7.0.tgz"
+  "version" "0.7.0"
   dependencies:
     "axios" "^0.21.1"
     "elliptic" "^6.5.4"
