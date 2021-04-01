@@ -9,7 +9,7 @@
 | status | name                           | description                      |
 |---     |---                             |---                               |
 | OK     | [upload-react](./upload-react) | Simple file upload dApp in React |
-| OK     | [metamask-signer](./metamask-signer) | Using Metamask as SOC/Feeds signer |
+| OK     | [eth-wallet-signing](./eth-wallet-signing) | Using Ethereum Wallet (i.e. Metamask) as SOC/Feeds signer |
 
 
 ## Maintainers
