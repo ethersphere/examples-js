@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CORS Preflight problem</title>
+</head>
+<body>
+<h1>CORS Preflight problem demonstration</h1>
+<h3>Problem</h3>
+<p>
+    When browser is evaluating if a request is allowed or not from CORS perspective it does uses few criteria.
+    <br><br>
+    First, if the request is deemed as <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests">Simple request</a> then
+    it does not trigger CORS Preflight check. For details on what is deemed as Simple request see the link, but generally there is
+    restricted set of allowed HTTP Methods, headers and content types.
+    <br><br>
+    If request is not found as "Simple request" the browser triggers <a
+        href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#preflighted_requests">Preflight request</a> which creates
+    an <code>OPTIONS</code> request to the server asking if the request is alright. The server has to respond with all allowed
+    headers and methods in the <code>Access-Control-Allow-*</code> headers.
+    <br><br>
+    A lot of Bee APIs uses non standard headers like <code>swarm-index-document</code>, <code>swarm-tag</code> etc, or "non-simple" content types like <code>application/x-tar</code>
+    which then triggers this Preflight check. Unfortunately the Bee does not handles these Preflight checks correctly, and does not set
+    <code>Access-Control-Allow-*</code> headers as needed and hence the requests fails.
+</p>
+<h3>Setup</h3>
+<ul>
+    <li>Chrome v89</li>
+    <li>Bee 0.5.3 running on <code>1633</code> with <code>--cors-allowed-origins="*"</code> flag (exact script run is <a
+            href="https://github.com/ethersphere/bee-js/blob/master/test/bee.sh">here</a>).
+    </li>
+    <li>This page loaded from other origin then from the Bee node</li>
+</ul>
+
+<h3>Demonstration</h3>
+This demonstration tries to upload collection with specified index document. <br><br>
+
+Open Developer Tools > Network, hit the button below and see the Preflight network request to fail. <br><br>
+
+While the Preflight check correctly passes with code 200, the original <code>/dirs</code> requests fails with <code>PreflightMissingAllowOriginHeader</code> error.
+
+<br><br>
+<button id="btn">Upload collection</button>
+<div id="info"></div>
+<script src="https://unpkg.com/@ethersphere/bee-js/dist/index.browser.min.js"></script>
+<script>
+  const bee = new BeeJs.Bee('http://localhost:1633')
+  const btn = document.getElementById('btn')
+  const info = document.getElementById('info')
+  btn.addEventListener('click', async () => {
+    info.innerText = 'Uploading...'
+    try {
+
+      const blob = new Blob([`<h1>Hello world</h1>`], { type: 'text/html' })
+      const file = new File([blob], 'index.html', { type: 'text/html' })
+
+      const result = await bee.uploadFiles([file], { indexDocument: 'index.html' })
+      info.innerText = 'Done successfully: ' + result
+    } catch (e) {
+      info.innerText = 'Error! ' + e
+    }
+  })
+</script>
+</body>
+</html>
