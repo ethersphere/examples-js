@@ -6,7 +6,13 @@
 </head>
 <body>
 <h1>Eth Wallet Signing of Single Owner Chunk</h1>
+
+This example writes data to Bee which requires valid Postage Stamp. If you have once, you can pass
+its Postage Batch ID, if you don't you can create one. But be aware that this creates on-chain transaction and spent
+Eth (for gas) and BZZ (for the postage stamp). If you are running this against main-net node this will spend real money.
+<br><br>
 <form id="form">
+  <input id="batchId" type="text" placeholder="Postage Batch ID" required size="64"><button id="createBatchBtn" type="button">Create Postage Batch</button><br>
   <input id="data" type="text" placeholder="Message (data)" maxlength="4000" required size="40"><br>
   <input id="topic" type="text" placeholder="Topic" required size="20"><br>
   <input id="send" type="submit" value="Sign and upload!">
