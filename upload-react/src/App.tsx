@@ -16,7 +16,7 @@ function App() {
   const [ postageStamps, setPostageStamps ] = useState<PostageBatch[]>([])
   const [ selectedPostageStamp, setSelectedPostageStamp ] = useState<Address | null>(null)
   const [ loadingStamps, setLoadingStamps ] = useState<boolean>(false)
-  const [ creatingStamp, setcreatingStamp ] = useState<boolean>(false)
+  const [ creatingStamp, setCreatingStamp ] = useState<boolean>(false)
   const [ stampError, setStampError ] = useState<Error | null>(null)
 
   useEffect(() => {
@@ -29,9 +29,9 @@ function App() {
 
   const createPostageStamp = async () => {
     try {
-      setcreatingStamp(true)
+      setCreatingStamp(true)
       await bee.createPostageBatch(POSTAGE_STAMPS_AMOUNT, POSTAGE_STAMPS_DEPTH)
-      setcreatingStamp(false)
+      setCreatingStamp(false)
 
       setLoadingStamps(true)
       const ps = await bee.getAllPostageBatch()
