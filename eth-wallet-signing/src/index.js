@@ -50,7 +50,7 @@ function main() {
       createBatchBtn.disabled = true
       createBatchBtn.textContent = 'Creating...'
 
-      document.getElementById('batchId').value = await bee.createPostageBatch(BigInt(amount), parseInt(depthStr))
+      document.getElementById('batchId').value = await bee.createPostageBatch(amount.toString(), parseInt(depthStr))
 
       createBatchBtn.disabled = false
       createBatchBtn.textContent = 'Create Postage Batch'
