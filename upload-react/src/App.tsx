@@ -30,7 +30,7 @@ function App() {
   const createPostageStamp = async () => {
     try {
       setCreatingStamp(true)
-      await bee.createPostageBatch(POSTAGE_STAMPS_AMOUNT, POSTAGE_STAMPS_DEPTH)
+      await bee.createPostageBatch(POSTAGE_STAMPS_AMOUNT.toString(), POSTAGE_STAMPS_DEPTH)
       setCreatingStamp(false)
 
       setLoadingStamps(true)
@@ -79,7 +79,7 @@ function App() {
       <h1>Postage stamps</h1>
       <code>
         <div style={{
-          display: 'grid', 
+          display: 'grid',
           gridTemplateColumns: '100px 1fr 100px',
           rowGap: '5px',
           columnGap: '15px'
@@ -89,9 +89,9 @@ function App() {
           <div>Utilization</div>
         </div>
         <hr />
-        {postageStamps.map(({batchID, utilization}) => 
+        {postageStamps.map(({batchID, utilization}) =>
         <div key={batchID} style={{
-          display: 'grid', 
+          display: 'grid',
           gridTemplateColumns: '100px 1fr 100px',
           rowGap: '5px',
           columnGap: '15px'
