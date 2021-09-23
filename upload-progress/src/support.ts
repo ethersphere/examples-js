@@ -21,7 +21,7 @@ async function createBatchGuide (): Promise<void> {
       return
     }
 
-    const depthStr = prompt('What depth should the batch has (at least 16)? (integer)', '17')
+    const depthStr = prompt('What depth should the batch has (at least 17)? (integer)', '17')
 
     if (!depthStr) {
       return
