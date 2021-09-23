@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload progress</title>
+    <style>
+        #logs {
+            margin: 10px;
+            padding: 5px;
+            min-height: 100px;
+            max-height: 50%;
+            border: 1px gray solid
+        }
+
+        #logs > div {
+            padding: 5px 0;
+            border-bottom: 1px grey solid;
+        }
+
+        #logs > div:nth-child(even) {
+            background-color: #f3f3f3;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Upload progress example</h1>
+
+Currently bee-js does not natively support upload progress as it is using <code>fetch</code> based HTTP client
+that unfortunately does not support this feature at the moment (please comment on the appropriate
+<a href="https://github.com/whatwg/fetch/issues/607">fetch spec issue</a> to raise momentum for this to happen).
+<br><br>
+
+Nevertheless there is a workaround using a library called <a href="https://github.com/lifeomic/axios-fetch"><code>axios-fetch</code></a>
+that implements <code>fetch</code> API with XHR based HTTP client
+that supports tracking upload progress, that we will present to you in this example.
+<br><br>
+
+<strong>Open the browser console to see what is exactly happening! ;-)</strong>
+
+<br><br>
+<form id="form">
+    <input id="batchId" type="text" placeholder="Postage Batch ID" required size="64">
+    <button id="createBatchBtn" type="button">Create Postage Batch</button>
+    <br>
+    <input id="data" type="file"><br>
+    <input id="send" type="submit" value="Upload!">
+</form>
+
+<div>
+    <a href="#" id="result" target="_blank"></a>
+</div>
+
+<br><br>
+Logging progress:
+<div id="logs">
+</div>
+<script src="bundle.js"></script>
+</body>
+</html>

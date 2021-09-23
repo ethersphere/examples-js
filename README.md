@@ -10,6 +10,7 @@
 |---     |---                             |---                               |
 | OK     | [upload-react](./upload-react) | Simple file upload dApp in React |
 | OK     | [eth-wallet-signing](./eth-wallet-signing) | Using Ethereum Wallet (i.e. Metamask) as SOC/Feeds signer |
+| OK     | [upload-progress](./upload-progress) | Showcase how to achieve upload progress tracking |
 
 
 ## Maintainers
