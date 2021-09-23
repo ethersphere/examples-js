@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
+  "license": "BSD-3-Clause",
   "dependencies": {
     "@ethersphere/bee-js": "ethersphere/bee-js#master",
     "@lifeomic/axios-fetch": "auhau/axios-fetch#feat/request-object",
