@@ -22,6 +22,6 @@ This example demonstrates how to use Ethereum browser wallets like Metamask or N
 
 *Tip! Checkout the browser console to see the steps the example is doing!*
 
-The interesting code parts are found in `src/index.js` file. We are using utility supplied by `bee-js` 
-called [`makeEthereumWalletSigner`](https://bee-js.ethswarm.org/docs/api/functions/utils.eth.makeEthereumWalletSigner) that takes EIP-1193 compatible Ethereum provider 
+The interesting code parts are found in `src/main.ts` file. We are using utility supplied by `bee-js` 
+called [`makeEthereumWalletSigner`](https://bee-js.ethswarm.org/docs/api/functions/utils.makeEthereumWalletSigner) that takes EIP-1193 compatible Ethereum provider 
 and create custom [`Signer`](https://bee-js.ethswarm.org/docs/api/interfaces/signer).

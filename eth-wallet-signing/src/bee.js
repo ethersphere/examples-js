@@ -1,1 +1,0 @@
-../node_modules/@ethersphere/bee-js/dist/index.browser.min.js
