@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Address, Bee, PostageBatch } from '@ethersphere/bee-js';
+import { Address, Bee, BeeDebug, PostageBatch } from '@ethersphere/bee-js';
 import './App.css';
 
 const beeUrl = "http://localhost:1633"
+const beeDebugUrl = "http://localhost:1635"
 const POSTAGE_STAMPS_AMOUNT = BigInt(10000)
 const POSTAGE_STAMPS_DEPTH = 20
 const bee = new Bee(beeUrl);
+const beeDebug = new BeeDebug(beeDebugUrl);
 
 function App() {
   const [ file, setFile ] = useState<File | null>(null)
@@ -21,7 +23,7 @@ function App() {
 
   useEffect(() => {
     setLoadingStamps(true)
-    bee.getAllPostageBatch()
+    beeDebug.getAllPostageBatch()
       .then((ps: PostageBatch[]) => setPostageStamps(ps))
       .catch(setStampError)
       .finally(() => setLoadingStamps(false))
@@ -30,11 +32,11 @@ function App() {
   const createPostageStamp = async () => {
     try {
       setCreatingStamp(true)
-      await bee.createPostageBatch(POSTAGE_STAMPS_AMOUNT.toString(), POSTAGE_STAMPS_DEPTH)
+      await beeDebug.createPostageBatch(POSTAGE_STAMPS_AMOUNT.toString(), POSTAGE_STAMPS_DEPTH)
       setCreatingStamp(false)
 
       setLoadingStamps(true)
-      const ps = await bee.getAllPostageBatch()
+      const ps = await beeDebug.getAllPostageBatch()
       setPostageStamps(ps)
       setLoadingStamps(false)
     }

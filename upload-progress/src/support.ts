@@ -1,13 +1,14 @@
 /* eslint-disable no-alert,no-console */
-import { Bee, UploadResult } from '@ethersphere/bee-js'
+import { Bee, BeeDebug, UploadResult } from '@ethersphere/bee-js'
 
 type ProgressCb = (info: any) => void
 type ExecutorCb = (bee: Bee, batchId: string, input: File, progressCb: ProgressCb) => Promise<UploadResult>
 
 const BEE_URL = 'http://localhost:1633'
+const BEE_DEBUG_URL = 'http://localhost:1635'
 
 let sendBtn: HTMLButtonElement,
-  resultLink: HTMLLinkElement, dataInput: HTMLInputElement, createBatchBtn: HTMLButtonElement, bee, logs: HTMLDivElement
+  resultLink: HTMLLinkElement, dataInput: HTMLInputElement, createBatchBtn: HTMLButtonElement, bee, beeDebug, logs: HTMLDivElement
 
 async function createBatchGuide (): Promise<void> {
   if (!confirm('This will create new postage batch that requires on-chain transaction and spending Eth and BZZ! Do you want to continue?')) {
@@ -30,7 +31,7 @@ async function createBatchGuide (): Promise<void> {
     createBatchBtn.disabled = true
     createBatchBtn.textContent = 'Creating...'
 
-    ;(document.getElementById('batchId') as HTMLInputElement).value = await bee.createPostageBatch(amount.toString(), parseInt(depthStr))
+    ;(document.getElementById('batchId') as HTMLInputElement).value = await beeDebug.createPostageBatch(amount.toString(), parseInt(depthStr))
 
     createBatchBtn.disabled = false
     createBatchBtn.textContent = 'Create Postage Batch'
@@ -73,6 +74,7 @@ async function formSubmitted (executor: ExecutorCb, e: Event): Promise<void> {
 
 export default function runExample (executor: ExecutorCb): void {
   bee = new Bee(BEE_URL)
+  beeDebug = new BeeDebug(BEE_DEBUG_URL)
 
   sendBtn = document.getElementById('send') as HTMLButtonElement
   resultLink = document.getElementById('result') as HTMLLinkElement

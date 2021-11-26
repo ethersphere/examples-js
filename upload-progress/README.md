@@ -11,7 +11,7 @@ that implements `fetch` API with XHR based HTTP client that supports tracking up
 ### Prerequisites
 
  - Node and NPM
- - Bee instance running with API port on 1633 and having flag `--cors-allowed-origins="*"`
+- Bee instance running with API port on 1633 and Debug API port on 1635 and having flag `--cors-allowed-origins="*"`
 
 ### Steps:
 

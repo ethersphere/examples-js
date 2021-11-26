@@ -1,12 +1,13 @@
 /* eslint-disable no-alert,no-console */
 
-import { Bee, UploadResult, Reference } from '@ethersphere/bee-js'
+import { Bee, BeeDebug, Reference } from '@ethersphere/bee-js'
 
 type ExecutorCb = (bee: Bee, batchId: string, inputHash: Reference, topic: string) => Promise<string>
 
 const BEE_URL = 'http://localhost:1633'
+const BEE_DEBUG_URL = 'http://localhost:1635'
 let sendBtn: HTMLButtonElement,
-  resultLink: HTMLLinkElement, dataInput: HTMLInputElement, createBatchBtn: HTMLButtonElement, bee
+  resultLink: HTMLLinkElement, dataInput: HTMLInputElement, createBatchBtn: HTMLButtonElement, bee, beeDebug
 
 /**
  * The `/bzz` endpoint accepts only Manifest/Collection so we have to build one.
@@ -44,7 +45,7 @@ async function createBatchGuide (): Promise<void> {
     createBatchBtn.disabled = true
     createBatchBtn.textContent = 'Creating...'
 
-    ;(document.getElementById('batchId') as HTMLInputElement).value = await bee.createPostageBatch(amount.toString(), parseInt(depthStr))
+    ;(document.getElementById('batchId') as HTMLInputElement).value = await beeDebug.createPostageBatch(amount.toString(), parseInt(depthStr))
 
     createBatchBtn.disabled = false
     createBatchBtn.textContent = 'Create Postage Batch'
@@ -90,6 +91,7 @@ export default function runExample (executor: ExecutorCb): void {
   }
 
   bee = new Bee(BEE_URL)
+  beeDebug = new BeeDebug(BEE_DEBUG_URL)
 
   sendBtn = document.getElementById('send') as HTMLButtonElement
   resultLink = document.getElementById('result') as HTMLLinkElement

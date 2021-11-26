@@ -6,7 +6,7 @@ This example demonstrates how to use Ethereum browser wallets like Metamask or N
 
  - Node and NPM
  - browser with Ethereum compatible wallet like Metamask or Nifty
- - Bee instance running with API port on 1633 and having flag `--cors-allowed-origins="*"`
+ - Bee instance running with API port on 1633 and Debug API port on 1635 and having flag `--cors-allowed-origins="*"`
 
 ### Steps:
 
