@@ -1,6 +1,11 @@
-const path = require('path')
+import path from 'path'
+import {fileURLToPath} from 'url'
 
-module.exports = {
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+export default {
   mode: 'development',
   entry: './src/main.ts',
   devtool: 'source-map',
@@ -18,6 +23,7 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
+    chunkFormat: 'module',
     path: path.resolve(__dirname, 'dist')
   }
 }
