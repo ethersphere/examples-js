@@ -78,7 +78,7 @@ export default function runExample (executor: ExecutorCb): void {
 
   sendBtn = document.getElementById('send') as HTMLButtonElement
   resultLink = document.getElementById('result') as HTMLLinkElement
-  logs = document.getElementById('logs') as HTMLDivElement
+  logs = document.getElementById('content') as HTMLDivElement
   dataInput = document.getElementById('data') as HTMLInputElement
   createBatchBtn = document.getElementById('createBatchBtn') as HTMLButtonElement
 
