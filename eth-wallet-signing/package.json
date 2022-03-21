@@ -12,7 +12,7 @@
   "author": "",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "@ethersphere/bee-js": "^3.3.2"
+    "@ethersphere/bee-js": "3.3.2"
   },
   "devDependencies": {
     "ts-loader": "^9.2.5",
