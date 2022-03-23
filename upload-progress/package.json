@@ -1,6 +1,5 @@
 {
   "name": "bee-js-example-upload-progress",
-  "type": "module",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -12,7 +11,7 @@
   "author": "",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "@ethersphere/bee-js": "3.3.1",
+    "@ethersphere/bee-js": "3.3.2",
     "@lifeomic/axios-fetch": "auhau/axios-fetch#feat/request-object",
     "axios": "^0.21.1"
   },
