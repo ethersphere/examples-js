@@ -45,7 +45,7 @@ async function createBatchGuide (): Promise<void> {
     createBatchBtn.disabled = true
     createBatchBtn.textContent = 'Creating...'
 
-    ;(document.getElementById('batchId') as HTMLInputElement).value = await beeDebug.createPostageBatch(amount.toString(), parseInt(depthStr))
+    ;(document.getElementById('batchId') as HTMLInputElement).value = await beeDebug.createPostageBatch(amount.toString(), parseInt(depthStr), {waitForUsable: true})
 
     createBatchBtn.disabled = false
     createBatchBtn.textContent = 'Create Postage Batch'

@@ -11,8 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@ethersphere/bee-js": "^3.3.1",
-    "webpack": "^5.68.0",
+    "@ethersphere/bee-js": "4.1.1",
+    "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2"
   }
 }
