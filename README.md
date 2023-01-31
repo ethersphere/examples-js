@@ -15,9 +15,6 @@
 
 
 ## Maintainers
- 
- - [vojtechsimetka](https://github.com/vojtechsimetka)
- - [auhau](https://github.com/auhau)
 
 See what "Maintainer" means [here](https://github.com/ethersphere/repo-maintainer).
 
