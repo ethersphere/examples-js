@@ -1,14 +1,32 @@
 /* eslint-disable no-alert,no-console */
 import { Bee, BeeDebug, UploadResult } from '@ethersphere/bee-js'
 
-type ProgressCb = (info: any) => void
-type ExecutorCb = (bee: Bee, batchId: string, input: File, progressCb: ProgressCb) => Promise<UploadResult>
+type ProgressCb = (info: any) => void;
+type UploadExecutorCb = (
+  bee: Bee,
+  batchId: string,
+  input: File,
+  progressCb: ProgressCb,
+) => Promise<UploadResult>;
+
+type DownloadExecutorCb = (
+  bee: Bee,
+  reference: string,
+  progressCb: ProgressCb,
+) => Promise<UploadResult>;
 
 const BEE_URL = 'http://localhost:1633'
 const BEE_DEBUG_URL = 'http://localhost:1635'
 
-let sendBtn: HTMLButtonElement,
-  resultLink: HTMLLinkElement, dataInput: HTMLInputElement, createBatchBtn: HTMLButtonElement, bee, beeDebug, logs: HTMLDivElement
+let uploadBtn: HTMLButtonElement,
+  downloadBtn: HTMLButtonElement,
+  resultLink: HTMLLinkElement,
+  uploadInput: HTMLInputElement,
+  referenceInput: HTMLInputElement,
+  createBatchBtn: HTMLButtonElement,
+  bee,
+  beeDebug,
+  logs: HTMLDivElement
 
 async function createBatchGuide (): Promise<void> {
   if (!confirm('This will create new postage batch that requires on-chain transaction and spending Eth and BZZ! Do you want to continue?')) {
@@ -49,38 +67,74 @@ function logProgress (input: any): void {
   logs.appendChild(logEntry)
 }
 
-async function formSubmitted (executor: ExecutorCb, e: Event): Promise<void> {
+async function uploadFormSubmitted (
+  executor: UploadExecutorCb,
+  e: Event,
+): Promise<void> {
   e.preventDefault() // Lets not submit the form
 
   try {
-    sendBtn.disabled = true
-    sendBtn.value = 'Uploading...'
+    uploadBtn.disabled = true
+    uploadBtn.value = 'Uploading...'
     logs.innerHTML = '' // Reset logging
 
-
-    const file = dataInput.files.item(0)
-    const batchId = (document.getElementById('batchId') as HTMLInputElement).value
-    const {reference: result} = await executor(bee, batchId, file, logProgress)
+    const file = uploadInput.files.item(0)
+    const batchId = (document.getElementById('batchId') as HTMLInputElement)
+      .value
+    const { reference: result } = await executor(
+      bee,
+      batchId,
+      file,
+      logProgress,
+    )
 
     resultLink.href = `${BEE_URL}/files/${result}`
     resultLink.innerText = `Uploaded link: ${BEE_URL}/files/${result}`
   } catch (e) {
     alert(e)
   } finally {
-    sendBtn.disabled = false
-    sendBtn.value = 'Upload!'
+    uploadBtn.disabled = false
+    uploadBtn.value = 'Upload!'
   }
 }
 
-export default function runExample (executor: ExecutorCb): void {
+async function downloadFormSubmitted (
+  executor: DownloadExecutorCb,
+  e: Event,
+): Promise<void> {
+  e.preventDefault() // Lets not submit the form
+
+  try {
+    downloadBtn.disabled = true
+    downloadBtn.value = 'Downloading...'
+    logs.innerHTML = '' // Reset logging
+
+    const reference = referenceInput.value
+    await executor(bee, reference, logProgress)
+  } catch (e) {
+    alert(e)
+  } finally {
+    downloadBtn.disabled = false
+    downloadBtn.value = 'Download!'
+  }
+}
+
+export default function runExample (
+  uploadExecutor: UploadExecutorCb,
+  downloadExecutor: DownloadExecutorCb,
+): void {
   bee = new Bee(BEE_URL)
   beeDebug = new BeeDebug(BEE_DEBUG_URL)
 
-  sendBtn = document.getElementById('send') as HTMLButtonElement
+  uploadBtn = document.getElementById('upload') as HTMLButtonElement
+  downloadBtn = document.getElementById('download') as HTMLButtonElement
   resultLink = document.getElementById('result') as HTMLLinkElement
-  logs = document.getElementById('content') as HTMLDivElement
-  dataInput = document.getElementById('data') as HTMLInputElement
-  createBatchBtn = document.getElementById('createBatchBtn') as HTMLButtonElement
+  logs = document.getElementById('logs') as HTMLDivElement
+  uploadInput = document.getElementById('data') as HTMLInputElement
+  referenceInput = document.getElementById('reference') as HTMLInputElement
+  createBatchBtn = document.getElementById(
+    'createBatchBtn',
+  ) as HTMLButtonElement
 
   if (!createBatchBtn) {
     throw new Error('Create Batch Button does not exists')
@@ -88,5 +142,17 @@ export default function runExample (executor: ExecutorCb): void {
 
   createBatchBtn.addEventListener('click', createBatchGuide)
 
-  document.getElementById('form')!.addEventListener('submit', formSubmitted.bind(undefined, executor))
+  document
+    .getElementById('uploadForm')!
+    .addEventListener(
+      'submit',
+      uploadFormSubmitted.bind(undefined, uploadExecutor),
+    )
+
+  document
+    .getElementById('downloadForm')!
+    .addEventListener(
+      'submit',
+      downloadFormSubmitted.bind(undefined, downloadExecutor),
+    )
 }
