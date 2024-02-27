@@ -35,7 +35,7 @@ runExample( async (bee, batchId, inputHash, rawTopic) => {
   console.log('Verification result: ', feedVerification.reference === inputHash)
 
   // Lets create chunk hash for manifest that can be used with the BZZ endpoint
-  const resultUrl = `/bzz/${await bee.createFeedManifest(batchId, 'sequence', topic, signer.address)}/index.html`
+  const resultUrl = `/bzz/${(await bee.createFeedManifest(batchId, 'sequence', topic, signer.address)).reference}/index.html`
   console.log('Feed Manifest URL: ' + resultUrl)
 
   return resultUrl

@@ -1,24 +1,24 @@
 {
-  "name": "bee-js-example-eth-wallet",
-  "version": "1.0.0",
-  "description": "",
-  "private": true,
-  "main": "index.js",
-  "scripts": {
-    "build": "webpack",
-    "start": "webpack serve --open",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "BSD-3-Clause",
-  "dependencies": {
-    "@ethersphere/bee-js": "3.3.2"
-  },
-  "devDependencies": {
-    "ts-loader": "^9.2.5",
-    "typescript": "^4.4.2",
-    "webpack": "^5.51.1",
-    "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^4.1.0"
-  }
+    "name": "bee-js-example-eth-wallet",
+    "version": "1.0.0",
+    "description": "",
+    "private": true,
+    "main": "index.js",
+    "scripts": {
+        "build": "webpack",
+        "start": "webpack serve --open",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "BSD-3-Clause",
+    "dependencies": {
+        "@ethersphere/bee-js": "^6.7.4"
+    },
+    "devDependencies": {
+        "ts-loader": "^9.2.5",
+        "typescript": "^4.4.2",
+        "webpack": "^5.51.1",
+        "webpack-cli": "^4.8.0",
+        "webpack-dev-server": "^4.1.0"
+    }
 }
