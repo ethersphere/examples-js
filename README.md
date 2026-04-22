@@ -1,20 +1,13 @@
 # JS examples
 
-> Examples for [bee-js](https://github.com/ethersphere/bee-js) and other Swarm JS projects
+This repository is no longer maintained. Please see the [create-swarm-app](https://github.com/ethersphere/create-swarm-app) project which provides a boilerplate for building Swarm applications with JavaScript. It includes examples and documentation to help you get started with Swarm development.
 
-**Warning: These examples are using libraries and tools under heavy development. There might (and most probably will) be changes in the future to its API and working. Also, no guarantees can be made about stability, efficiency, and security at this stage.**
+## Bee-JS
 
-## Examples
+[Bee-JS](https://github.com/ethersphere/bee-js) is the official JavaScript/TypeScript client for Swarm. It provides a convenient interface for interacting with the Swarm network, allowing you to upload and download data, manage your Swarm node, and more.
 
-| status | name                                       | description                                               |
-| ------ | ------------------------------------------ | --------------------------------------------------------- |
-| OK     | [upload-react](./upload-react)             | Simple file upload dApp in React                          |
-| OK     | [eth-wallet-signing](./eth-wallet-signing) | Using Ethereum Wallet (i.e. Metamask) as SOC/Feeds signer |
+## Further reading
 
-## Maintainers
-
-See what "Maintainer" means [here](https://github.com/ethersphere/repo-maintainer).
-
-## License
-
-[BSD-3-Clause](./LICENSE)
+-   [Swarm documentation](https://docs.ethswarm.org)
+-   [bee-js documentation](https://bee-js.ethswarm.org)
+-   [Bee node quick start](https://docs.ethswarm.org/docs/bee/installation/quick-start)
